@@ -19,6 +19,9 @@ coverage:
         base: auto 
 
 parsers:
+  jacoco:
+    partials_as_hits: true # Count partial coverage as hits
+    handle_missing_conditons: true
   gcov:
     branch_detection:
       conditional: yes
