@@ -39,7 +39,7 @@ jobs:
 
       - name: Generate Coverage Report with gcovr
         run: |
-          python -m gcovr -r . --xml-pretty -o coverage.xml
+          python -m gcovr -r . --jacoco -o coverage.xml
           python -m gcovr -r . --html --html-details -o coverage.html
 
       - name: Upload coverage to Codecov
@@ -48,24 +48,6 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml
           fail_ci_if_error: true
-
-      - name: Upload coverage to Codacy
-        shell: bash
-        run: |
-          # Download Codacy coverage reporter
-          curl -Ls https://coverage.codacy.com/get.sh > codacy-coverage-reporter.sh
-          chmod +x codacy-coverage-reporter.sh
-
-          # Upload coverage for C++
-          ./codacy-coverage-reporter.sh report -l CPP -r coverage.xml --partial
-
-          # Upload coverage for C
-          ./codacy-coverage-reporter.sh report -l C -r coverage.xml --partial
-
-          # Finalize the coverage report
-          ./codacy-coverage-reporter.sh final
-        env:
-          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
       - name: Upload HTML Coverage Report as Artifact
         uses: actions/upload-artifact@v3
