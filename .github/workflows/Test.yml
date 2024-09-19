@@ -39,7 +39,8 @@ jobs:
 
       - name: Generate Coverage Report with gcovr
         run: |
-          python -m gcovr -r . --jacoco -o coverage.xml
+          python -m gcovr -r . --jacoco -o coverage1.xml
+          python -m gcovr -r . --xml-pretty -o coverage.xml
           python -m gcovr -r . --html --html-details -o coverage.html
 
       - name: Upload coverage to Codecov
