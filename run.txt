@@ -1,0 +1,7 @@
+Run Project
+cd src && g++ -std=c++17 ../helper/*.cpp valeris.cpp -o valeris && ./valeris && cd ..
+
+Run Tests
+cd tests && g++ -std=c++17 -o run_tests minigames_test.cpp ../helper/*.cpp && ./run_tests && cd ..
+
+Just needa push a commit to see what goes wrong
